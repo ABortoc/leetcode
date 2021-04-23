@@ -1,3 +1,23 @@
+from time import perf_counter_ns
+start = perf_counter_ns()
+# def maxSubArray(nums):
+#         max_sum = nums[0]
+#         current_sum = 0
+		
+#         for elem in nums:
+#             if current_sum < 0:
+#                 current_sum = 0
+#             current_sum += elem
+#             max_sum = max(max_sum, current_sum)
+			
+#         return max_sum  
+def maxSubArray(nums):
+    current_sum = nums[0]
+    max_sum = current_sum
+    for elem in nums[1:]:
+        current_sum = max(current_sum + elem, elem)
+        max_sum = max(max_sum, current_sum)
+    return max_sum
 # def maxSubArray(nums):
 #     if not nums:
 #         return 0
@@ -22,21 +42,9 @@
 #                 temp_sum = nums[idx]
     
 #     return max_sum
-
-def maxSubArray(nums):
-        max_sum = nums[0]
-        current_sum = 0
-		
-        for elem in nums:
-            if current_sum < 0:
-                current_sum = 0
-            current_sum += elem
-            max_sum = max(max_sum, current_sum)
-			
-        return max_sum  
-
+end = perf_counter_ns()
 # Example 1:
-# nums = [-2,1,-3,4,-1,2,1,-5,4]
+nums = [-2,1,-3,4,-1,2,1,-5,4]
 # Output: 6
 # Explanation: [4,-1,2,1] has the largest sum = 6.
 # Example 2:
@@ -49,7 +57,7 @@ def maxSubArray(nums):
 # nums = [1,2]
 # Output: 3
 # Example 5:
-nums = [8,-19,5,-4,20]
+# nums = [8,-19,5,-4,20]
 # Output: 21
 
-print(maxSubArray(nums))
+print(maxSubArray(nums), " ", end-start)
